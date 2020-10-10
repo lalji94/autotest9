@@ -915,7 +915,7 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
 //   async.waterfall([
   setInterval( function setup() {
       // axios('https://t.me/s/postwomensworld1')
-      axios('https://t.me/s/tricksbystg03')
+      axios('https://t.me/s/frcp_deals')
         .then(response => {
           var html = response.data;
           var $ = cheerio.load(html);
