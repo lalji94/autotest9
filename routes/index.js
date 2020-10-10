@@ -283,6 +283,7 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
           }
           let last_insert_id = _.last(matchObj);
           console.log('last_insert_id: ', last_insert_id);
+          console.log('matchObj: ', matchObj);
 
           let sql = 'SELECT COUNT(*) as cnt FROM post_telegram2 WHERE post_telegram2.post_id =' + last_insert_id.id;
           connection.query(sql, function (err, rides) {
@@ -327,12 +328,15 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
         let bitly = new BitlyClient(ListflagData.current_bitly);
         let sqls = "SELECT post_id FROM post_telegram2 ORDER BY id DESC LIMIT 1";
         connection.query(sqls, function (err, rides) {
+		console.log("1first",rides);
           if (err) {
             console.log('err: ', err);
           }
           for (let i = 0; i < lastInsertId - rides[0].post_id; i++) {
             let nextId = rides[0].post_id + i + 1;
             let userExists = lastArrayData.filter(user => user.id == nextId);
+		console.log("userExists",userExists);
+		  
               if (userExists.length > 0 && userExists[0].text_data != 'null\n') {
              let final =[];
              let array = userExists[0].text_data.split("\n");
@@ -347,6 +351,8 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
                     xzhxzh = array[j]
                     }
                   let urls = xzhxzh.match(/(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,!&\/\/=]+)/g)
+		console.log("urls",urls);
+		  
                      unshort(urls[0]).then(function(unshortenedUrls){ 
                         let unshortenedUrl = unshortenedUrls.unshorten.replace(/&amp;/g,'&');
                       console.log('unshortenedUrlsssssss: ', unshortenedUrl);
