@@ -964,7 +964,7 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
           setup();
           console.log(error);
         })
-    }, 19000)
+    }, 21000)
     
     function urlencode(str) {
       return str.replace(/%21/g,'!').replace(/%22/g,'"').replace(/pr%26/g,'pr?').replace(/%26/g,'&')
@@ -993,6 +993,7 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
           setup();
           }
           let ListflagData = flagData[0];
+		console.log("dsd",ListflagData)
           let bitly = new BitlyClient(ListflagData.current_bitly);
 
         let sqls = "SELECT post_id FROM post_telegram2 ORDER BY id DESC LIMIT 1";
@@ -1469,13 +1470,19 @@ function postImageWidth(post_link,token,amzn_data,storeId,finalAmznData,telegrou
               // } else{
               setTimeout(()=>{
                 let finalAmazon = final.join('\n');
+		                      console.log('finalAmazon11: ', finalAmazon);
+
               if(finalAmazon.match(/(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)/g)){
+		                      console.log('finalAmazon2222: ', finalAmazon);
+
                 let finalIdList = JSON.parse(ListflagData.array_data).user;
                 let finalPostList;
                 finalPostList = JSON.parse(ListflagData.savek_tele_group).telenogroup;
                 let insertFeild = [rides[0].post_id + i, JSON.stringify(finalAmazon.replace(/[^0-9a-zA-Zㄱ-힣+×÷=%♤♡☆♧)(*&^/~#@!-:;,?`_|<>{}¥£€$◇■□●○•°※¤《》¡¿₩\[\]\"\' \\]/g ,""))]
                 let sqlss = "INSERT INTO post_telegram2 (post_id,data) VALUES (" + nextId + "," + JSON.stringify(finalAmazon.replace(/[^0-9a-zA-Zㄱ-힣+×÷=%♤♡☆♧)(*&^/~#@!-:;,?`_|<>{}¥£€$◇■□●○•°※¤《》¡¿₩\[\]\"\' \\]/g ,"")) + ")";
                 connection.query(sqlss, [insertFeild], function (err, rides) {
+			                  console.log('rides11: ', rides);
+
                   if (err) {
                     console.log('err: ', err);
                   }else{
