@@ -6,19 +6,19 @@ var mysql  = require('mysql');
 
 
 //- Connection configuration
-// var db_config = {
-//     host     : 'sql6.freesqldatabase.com',
-//     user     : 'sql6460966',
-//     password : 'PfXIrBFDkD',
-//     database:'sql6460966'
-//   };
-
 var db_config = {
-  host     : 'sql6.freesqldatabase.com',
-  user     : 'sql6465893',
-  password : 'rNDuI2JqSk',
-  database:'sql6465893'
+  host     : 'top9deals.com',
+  user     : 'top9ddyk_apadmin',
+  password : 'S@!E6a6a',
+  database:'top9ddyk_app_panel'
 };
+
+// var db_config = {
+//   host     : 'sql6.freesqldatabase.com',
+//   user     : 'sql6465893',
+//   password : 'rNDuI2JqSk',
+//   database:'sql6465893'
+// };
 
 //- Create the connection variable
 var connection = mysql.createConnection(db_config);
